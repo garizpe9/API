@@ -13,10 +13,10 @@ function city(){
     console.log(month)
     var getcity = $("#entercity").val()
     $("#Citydate").html(getcity)
+    var addcity=$("#addcity").append("<tr>")
+    addcity.append("<td>")
     var apikey = "a27727791952336f9341e78353fcabb3"
     var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + getcity + "&appid=" + apikey
-    var lat =""
-    var lon =""
     $.ajax({
         url: queryURL,
         method: "GET",
@@ -28,10 +28,7 @@ function city(){
             url: weatherurl,
             method: "GET",
         }).then(function(response) {
-            //bring icon to current weather
-            var iconcode = response.current.weather[0].icon;
-            var weathersite="http://openweathermap.org/img/wn/"+iconcode+"@2x.png";
-            $("#code").attr("scr",weathersite);
+           
             //get t,h,w,u to main page with city
             var ftoc= ((response.current.temp) - 273.15) * (9/5) + 32;
             var round = Math.round(10*ftoc)/10;     // round X to tenths
@@ -39,7 +36,11 @@ function city(){
             $("#temp").html(round);
             $("#wind").html(response.current.wind_speed);
             $("#uv").html(response.current.uvi);
-            console.log(response)
+            console.log(response.current.weather[0].icon;)
+             //bring icon to current weather
+            var iconcode = response.current.weather[0].icon;
+            var weathersite="http://openweathermap.org/img/wn/"+iconcode+"@2x.png";
+            $("#code").attr("scr",weathersite);
             //five day forecast
             datos();    
             function datos(){
