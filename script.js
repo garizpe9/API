@@ -10,7 +10,6 @@ count=0;
 //onclick API Grab
 function city(){
     event.preventDefault;
-    console.log(month)
     var getcity = $("#entercity").val()
     $("#Citydate").html(getcity)
     var addcity=$("#addcity").append("<tr>")
@@ -36,23 +35,32 @@ function city(){
             $("#temp").html(round);
             $("#wind").html(response.current.wind_speed);
             $("#uv").html(response.current.uvi);
-            console.log(response.current.weather[0].icon;)
              //bring icon to current weather
             var iconcode = response.current.weather[0].icon;
             var weathersite="http://openweathermap.org/img/wn/"+iconcode+"@2x.png";
-            $("#code").attr("scr",weathersite);
+            $("#code").attr("src",weathersite);
             //five day forecast
             datos();    
             function datos(){
+                counter=1
                 $(".mb-0").each(function(){
-                  $(this).html(month +"/"+(utcdate+count)+"/" + fullyear)                
+                  $(this).html(month +"/"+(utcdate+counter)+"/" + fullyear)
+                  //images
+                  var lateweather=response.daily[counter].weather[0].icon;
+                  var a = $("<img>");
+                  a.attr("src","http://openweathermap.org/img/wn/"+lateweather+"@2x.png");
+                  $(this).append(a);
+                  //temp and humidity
                   var sm = $("<small>");
                   $(this).append("<div>");
                   $(this).append(sm);
-                  var temcon= ((response.daily[count].temp.max) - 273.15) * (9/5) + 32
+                  $(this).append("<div>");
+                  var temcon= ((response.daily[counter].temp.max) - 273.15) * (9/5) + 32
                   temround = Math.round(10*temcon)/10;
-                  sm.html("Temp: " + temround+"°F"+"<br>"+"Humidity: "+response.daily[count].humidity+"%");                 
+                  sm.html("Temp: " + temround+"°F"+"<br>"+"Humidity: "+response.daily[counter].humidity+"%");                 
                   count++
+                  counter++
+                  console.log(response)
                 })
             }  
         })
