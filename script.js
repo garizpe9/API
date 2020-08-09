@@ -28,12 +28,19 @@ function city(){
             url: weatherurl,
             method: "GET",
         }).then(function(response) {
+            //bring icon to current weather
+            var iconcode = response.current.weather[0].icon;
+            var weathersite="http://openweathermap.org/img/wn/"+iconcode+"@2x.png";
+            $("#code").attr("scr",weathersite);
+            //get t,h,w,u to main page with city
             var ftoc= ((response.current.temp) - 273.15) * (9/5) + 32;
             var round = Math.round(10*ftoc)/10;     // round X to tenths
             $("#humidity").html(response.current.humidity);
             $("#temp").html(round);
             $("#wind").html(response.current.wind_speed);
             $("#uv").html(response.current.uvi);
+            console.log(response)
+            //five day forecast
             datos();    
             function datos(){
                 $(".mb-0").each(function(){
