@@ -7,13 +7,47 @@ var month = parseInt(newdate.getMonth()+1);
 var utcdate=parseInt(newdate.getUTCDate());
 var fullyear=parseInt(newdate.getFullYear());
 count=0;
+
 //onclick API Grab
 function city(){
     event.preventDefault;
     var getcity = $("#entercity").val()
     $("#Citydate").html(getcity)
-    var addcity=$("#addcity").append("<tr>")
-    addcity.append("<td>")
+    //Local Storage
+
+    localStorage.setItem(count,getcity);
+
+
+   // var aLength = storage.length
+
+
+    adder()
+    //Button LIst for city
+    function adder(){
+        event.preventDefault
+        idcount=0;
+        if ($("#entercity").html !== ("")) {
+            $(".addcity").append("<tr>").append("<td class='obtain'>")
+            $(".obtain").each(function(){
+                $(this).attr("id", idcount);
+                $("#"+(idcount)).html(getcity)
+                idcount++
+                
+            })
+            
+            // .attr("id", idcount);
+            // //$("<td>").attr("id", idcount)
+            // event.preventDefault
+        
+            
+            // console.log(getcity)
+            // idcount++
+        } 
+          
+    }
+    
+
+    //API
     var apikey = "a27727791952336f9341e78353fcabb3"
     var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + getcity + "&appid=" + apikey
     $.ajax({
@@ -27,7 +61,6 @@ function city(){
             url: weatherurl,
             method: "GET",
         }).then(function(response) {
-           
             //get t,h,w,u to main page with city
             var ftoc= ((response.current.temp) - 273.15) * (9/5) + 32;
             var round = Math.round(10*ftoc)/10;     // round X to tenths
@@ -58,18 +91,12 @@ function city(){
                   var temcon= ((response.daily[counter].temp.max) - 273.15) * (9/5) + 32
                   temround = Math.round(10*temcon)/10;
                   sm.html("Temp: " + temround+"°F"+"<br>"+"Humidity: "+response.daily[counter].humidity+"%");                 
-                  count++
                   counter++
-                  console.log(response)
                 })
             }  
         })
     });
 }
-
-
-
-
 
 //do calcs for rest of them
 
