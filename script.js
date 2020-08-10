@@ -7,46 +7,30 @@ var month = parseInt(newdate.getMonth()+1);
 var utcdate=parseInt(newdate.getUTCDate());
 var fullyear=parseInt(newdate.getFullYear());
 count=0;
+idcount = localStorage.length;
+
+//Local Storage
+for (var i = 0; i < localStorage.length; i++) {
+    $(".seecity").append("<tr>").append(`<td id='${i+1}'`)
+    $("#"+(i+1)).html(localStorage.getItem(i+1))
+}
 
 //onclick API Grab
 function city(){
     event.preventDefault;
     var getcity = $("#entercity").val()
     $("#Citydate").html(getcity)
-    //Local Storage
-
-    localStorage.setItem(count,getcity);
-
-
-   // var aLength = storage.length
-
-
+    
     adder()
     //Button LIst for city
     function adder(){
+        var omgy=(localStorage.length+1)
         event.preventDefault
-        idcount=0;
-        if ($("#entercity").html !== ("")) {
-            $(".addcity").append("<tr>").append("<td class='obtain'>")
-            $(".obtain").each(function(){
-                $(this).attr("id", idcount);
-                $("#"+(idcount)).html(getcity)
-                idcount++
-                
-            })
-            
-            // .attr("id", idcount);
-            // //$("<td>").attr("id", idcount)
-            // event.preventDefault
-        
-            
-            // console.log(getcity)
-            // idcount++
-        } 
-          
+        $(".addcity").append("<tr>").append("<td id='"+(omgy)+"'")
+        $("#"+(omgy)).html(getcity)
+        localStorage.setItem(localStorage.length+1,getcity);        
     }
     
-
     //API
     var apikey = "a27727791952336f9341e78353fcabb3"
     var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + getcity + "&appid=" + apikey
@@ -103,4 +87,4 @@ function city(){
 //on click function save the city name with unique id (maybe length of local storage)
 //loop through local storage after every enter button 
 //as well as beginning of rendering so every local storgae has a button with name of city in it
-//on click of city take the name of the city and complete an ajax call and do cards 
+//on click of city take the name of the city and complete an ajax call 
