@@ -1,6 +1,6 @@
 $("#CitySearch").click(city)
 
-$(".addcity").click(newcity)
+$(".addcity").click(city)
 
 
 //dates
@@ -15,7 +15,6 @@ idcount = localStorage.length;
 //Local Storage
 for (var i = 0; i < localStorage.length; i++) {
     $(".seecity").append("<tr>").append(`<td id='${i+1}'`)
-    //$(".seecity").append("<tr>").append(`<td id='${i+1}'`)
     $("#"+(i+1)).html(localStorage.getItem(i+1))
     $("#"+(i+1)).click(oldcity)
 }
@@ -88,9 +87,10 @@ function city(){
 }
 
 function oldcity(){
-    event.preventDefault;
     var getcity = $(this).html()
+    console.log(getcity)
     $("#Citydate").html(getcity)
+      
     //API
     var apikey = "a27727791952336f9341e78353fcabb3"
     var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + getcity + "&appid=" + apikey
@@ -141,6 +141,8 @@ function oldcity(){
         })
     });
 }
+
+    
 
 
 //on click of city take the name of the city and complete an ajax call 
