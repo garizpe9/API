@@ -32,6 +32,17 @@ tbody{
 #h5{
   margin: 5px;
 }
+
+#weatherdata{
+  border-style: solid;
+  border-color:#dee2e6;
+  border-radius: 10px;
+  border-width: thin;
+  
+
+}
+
+
 /* For mobile phones: */
 [class*="col-"] {
   width: 100%;
