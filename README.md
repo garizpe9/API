@@ -2,3 +2,5 @@ Hello, this is a searchable weather site that looks up the temperature, humidity
 
 https://garizpe9.github.io/WeatherDash/
 
+<img href: https://github.com/garizpe9/WeatherDash/blob/master/Capture.PNG >
+
