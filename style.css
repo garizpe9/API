@@ -10,6 +10,19 @@ color: white;
 background-color: rgb(40, 40, 46);
 }
 
+.low{
+  background-color: green;
+}
+
+
+.moderate{
+  background-color: yellow;
+}
+
+.severe{
+  background-color: red;
+}
+
 #citycolumn{
 background-color: rgb(236, 236, 236);
 padding-top: 5px;

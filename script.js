@@ -15,6 +15,8 @@ for (var i = 0; i < localStorage.length; i++) {
     $("#"+(i+1)).html(localStorage.getItem(i+1))
     $("#"+(i+1)).click(oldcity)
 }
+
+
 //onclick API Grab
 function city(){
     event.preventDefault;
@@ -52,6 +54,24 @@ function city(){
             $("#temp").html(round);
             $("#wind").html(response.current.wind_speed);
             $("#uv").html(response.current.uvi);
+            var inte=parseInt(response.current.uvi)
+            if (inte<8){
+                $("#uv").removeClass("low");
+                $("#uv").removeClass("severe");
+                $("#uv").addClass("moderate");
+                
+             }
+            else (inte<2)
+                $("#uv").removeClass("severe");
+                $("#uv").removeClass("moderate");
+                $("#uv").addClass("low");
+            
+            if (inte>8){
+                $("#uv").removeClass("moderate");
+                $("#uv").removeClass("low");
+                $("#uv").addClass("severe");
+            }
+            
              //bring icon to current weather
             var iconcode = response.current.weather[0].icon;
             var weathersite="http://openweathermap.org/img/wn/"+iconcode+"@2x.png";
@@ -107,6 +127,23 @@ function oldcity(){
             $("#temp").html(round);
             $("#wind").html(response.current.wind_speed);
             $("#uv").html(response.current.uvi);
+            var inte=parseInt(response.current.uvi)
+            if (inte<8){
+                $("#uv").removeClass("low");
+                $("#uv").removeClass("severe");
+                $("#uv").addClass("moderate");
+                
+             }
+            else (inte<2)
+                $("#uv").removeClass("severe");
+                $("#uv").removeClass("moderate");
+                $("#uv").addClass("low");
+            
+            if (inte>8){
+                $("#uv").removeClass("moderate");
+                $("#uv").removeClass("low");
+                $("#uv").addClass("severe");
+            }
              //bring icon to current weather
             var iconcode = response.current.weather[0].icon;
             var weathersite="http://openweathermap.org/img/wn/"+iconcode+"@2x.png";
