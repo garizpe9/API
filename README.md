@@ -1,4 +1,4 @@
-# Employee-Tracker
+# Weather Dash
 
 ## Table of Contents
 * [Description](#description)
